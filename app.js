@@ -6,6 +6,8 @@ let noise = true
 let win = false
 let intervalId = 0
 let turn = 1
+let flash = 0
+let good = true
 
 const green_button = document.querySelector('#green')
 const red_button = document.querySelector('#red')
@@ -38,4 +40,6 @@ function play() {
   intervalId = 0
   turn = 1
   counter.innerHTML = 1
+  flash = 0
+  good = true
 }
