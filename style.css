@@ -115,3 +115,23 @@ main {
     height: 150px;
   }
 }
+
+@media (min-width: 766px) and (max-width: 820px) {
+  .colors {
+    width: 60%;
+  }
+  .colors > div {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (min-width: 821px) and (max-width: 1024px) {
+  .colors {
+    width: 30%;
+  }
+  .colors > div {
+    width: 100px;
+    height: 100px;
+  }
+}

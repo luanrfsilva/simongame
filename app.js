@@ -48,7 +48,6 @@ function play() {
     order.push(Math.floor(Math.random() * 4) + 1)
   }
   compTurn = true
-
   intervalId = setInterval(gameTurn, 800)
 }
 
@@ -63,49 +62,23 @@ function gameTurn() {
   if (compTurn) {
     clearColor()
     setTimeout(() => {
-      if (order[flash] === 1) one()
-      if (order[flash] === 2) two()
-      if (order[flash] === 3) three()
-      if (order[flash] === 4) four()
+      if (order[flash] === 1) soundEffect('clip1', 'green')
+      if (order[flash] === 2) soundEffect('clip2', 'red')
+      if (order[flash] === 3) soundEffect('clip3', 'yellow')
+      if (order[flash] === 4) soundEffect('clip4', 'blue')
       flash++
     }, 200)
   }
 }
 
-function one() {
+function soundEffect(audioId, elemId) {
   if (noise) {
-    let audio = document.getElementById('clip1')
+    let audio = document.getElementById(audioId)
     audio.play()
   }
   noise = true
-  green_button.classList.add('active')
-}
-
-function two() {
-  if (noise) {
-    let audio = document.getElementById('clip2')
-    audio.play()
-  }
-  noise = true
-  red_button.classList.add('active')
-}
-
-function three() {
-  if (noise) {
-    let audio = document.getElementById('clip3')
-    audio.play()
-  }
-  noise = true
-  yellow_button.classList.add('active')
-}
-
-function four() {
-  if (noise) {
-    let audio = document.getElementById('clip4')
-    audio.play()
-  }
-  noise = true
-  blue_button.classList.add('active')
+  elem = document.getElementById(elemId)
+  elem.classList.add('active')
 }
 
 function clearColor() {
@@ -126,7 +99,7 @@ green_button.addEventListener('click', () => {
   if (power) {
     player_order.push(1)
     check()
-    one()
+    soundEffect('clip1', 'green')
     if (!win) {
       setTimeout(() => clearColor(), 300)
     }
@@ -137,7 +110,7 @@ red_button.addEventListener('click', () => {
   if (power) {
     player_order.push(2)
     check()
-    two()
+    soundEffect('clip2', 'red')
     if (!win) {
       setTimeout(() => clearColor(), 300)
     }
@@ -148,7 +121,7 @@ yellow_button.addEventListener('click', () => {
   if (power) {
     player_order.push(3)
     check()
-    three()
+    soundEffect('clip3', 'yellow')
     if (!win) {
       setTimeout(() => clearColor(), 300)
     }
@@ -159,7 +132,7 @@ blue_button.addEventListener('click', () => {
   if (power) {
     player_order.push(4)
     check()
-    four()
+    soundEffect('clip4', 'blue')
     if (!win) {
       setTimeout(() => clearColor(), 300)
     }
