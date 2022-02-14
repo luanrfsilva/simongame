@@ -9,6 +9,7 @@ let turn = 1
 let flash = 0
 let good = true
 let compTurn = true
+let audioEnd = false
 
 const green_button = document.querySelector('#green')
 const red_button = document.querySelector('#red')
@@ -72,13 +73,13 @@ function gameTurn() {
 }
 
 function soundEffect(audioId, elemId) {
-  if (noise) {
-    let audio = document.getElementById(audioId)
-    audio.play()
-  }
-  noise = true
+  let audio = document.getElementById(audioId)
   elem = document.getElementById(elemId)
   elem.classList.add('active')
+  audio.play()
+  audio.addEventListener('ended', () => {
+    audioEnd = true
+  })
 }
 
 function clearColor() {
@@ -96,7 +97,8 @@ function flashColor() {
 }
 
 green_button.addEventListener('click', () => {
-  if (power) {
+  if (power && !compTurn && audioEnd) {
+    audioEnd = false
     player_order.push(1)
     check()
     soundEffect('clip1', 'green')
@@ -107,7 +109,8 @@ green_button.addEventListener('click', () => {
 })
 
 red_button.addEventListener('click', () => {
-  if (power) {
+  if (power && !compTurn && audioEnd) {
+    audioEnd = false
     player_order.push(2)
     check()
     soundEffect('clip2', 'red')
@@ -118,7 +121,8 @@ red_button.addEventListener('click', () => {
 })
 
 yellow_button.addEventListener('click', () => {
-  if (power) {
+  if (power && !compTurn && audioEnd) {
+    audioEnd = false
     player_order.push(3)
     check()
     soundEffect('clip3', 'yellow')
@@ -129,7 +133,8 @@ yellow_button.addEventListener('click', () => {
 })
 
 blue_button.addEventListener('click', () => {
-  if (power) {
+  if (power && !compTurn && audioEnd) {
+    audioEnd = false
     player_order.push(4)
     check()
     soundEffect('clip4', 'blue')
