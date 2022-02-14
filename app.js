@@ -73,17 +73,22 @@ function gameTurn() {
 }
 
 async function soundEffect(audioId, elemId) {
-  const audioSrc = {
-    clip1: './sounds/simonSound1.mp3',
-    clip2: './sounds/simonSound2.mp3',
-    clip3: './sounds/simonSound3.mp3',
-    clip4: './sounds/simonSound4.mp3',
+  try {
+    const audioSrc = {
+      clip1: './sounds/simonSound1.mp3',
+      clip2: './sounds/simonSound2.mp3',
+      clip3: './sounds/simonSound3.mp3',
+      clip4: './sounds/simonSound4.mp3',
+    }
+    let audio = new Audio(audioSrc[audioId])
+    elem = document.getElementById(elemId)
+    elem.classList.add('active')
+    await audio.play()
+    audioEnd = true
+  } catch (error) {
+    console.log(error)
+    audioEnd = true
   }
-  let audio = new Audio(audioSrc[audioId])
-  elem = document.getElementById(elemId)
-  elem.classList.add('active')
-  await audio.play()
-  audioEnd = true
 }
 
 function clearColor() {
