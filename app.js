@@ -82,9 +82,7 @@ async function soundEffect(audioId, elemId) {
     clip4: 'https://s3.amazonaws.com/freecodecamp/simonSound4.mp3',
   }
   let audio = new Audio(audioSrc[audioId])
-  audio.addEventListener('canplay', async () => {
-    await audio.play()
-  })
+  await audio.play()
   elem = document.getElementById(elemId)
   elem.classList.add('active')
   audioEnd = true
