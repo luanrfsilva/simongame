@@ -77,9 +77,9 @@ function soundEffect(audioId, elemId) {
   elem = document.getElementById(elemId)
   elem.classList.add('active')
   audio.play()
-  audio.addEventListener('ended', () => {
+  audio.onended = function () {
     audioEnd = true
-  })
+  }
 }
 
 function clearColor() {
