@@ -72,7 +72,7 @@ function gameTurn() {
   }
 }
 
-function soundEffect(audioId, elemId) {
+async function soundEffect(audioId, elemId) {
   const audioSrc = {
     clip1: './sounds/simonSound1.mp3',
     clip2: './sounds/simonSound2.mp3',
@@ -82,7 +82,8 @@ function soundEffect(audioId, elemId) {
   let audio = new Audio(audioSrc[audioId])
   elem = document.getElementById(elemId)
   elem.classList.add('active')
-  audio.play().then(() => (audioEnd = true))
+  await audio.play()
+  audioEnd = true
 }
 
 function clearColor() {
