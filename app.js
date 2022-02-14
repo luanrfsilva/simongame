@@ -72,23 +72,22 @@ function gameTurn() {
   }
 }
 
+let AudioContext = window.AudioContext || window.webkitAudioContext
+
 async function soundEffect(audioId, elemId) {
-  try {
-    const audioSrc = {
-      clip1: './sounds/simonSound1.mp3',
-      clip2: './sounds/simonSound2.mp3',
-      clip3: './sounds/simonSound3.mp3',
-      clip4: './sounds/simonSound4.mp3',
-    }
-    let audio = new Audio(audioSrc[audioId])
-    elem = document.getElementById(elemId)
-    elem.classList.add('active')
-    await audio.play()
-    audioEnd = true
-  } catch (error) {
-    console.log(error)
-    audioEnd = true
+  const audioSrc = {
+    clip1: './sounds/simonSound1.mp3',
+    clip2: './sounds/simonSound2.mp3',
+    clip3: './sounds/simonSound3.mp3',
+    clip4: './sounds/simonSound4.mp3',
   }
+  let audio = new Audio(audioSrc[audioId])
+  audio.addEventListener('canplay', async () => {
+    await audio.play()
+  })
+  elem = document.getElementById(elemId)
+  elem.classList.add('active')
+  audioEnd = true
 }
 
 function clearColor() {
