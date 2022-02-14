@@ -76,10 +76,10 @@ let AudioContext = window.AudioContext || window.webkitAudioContext
 
 async function soundEffect(audioId, elemId) {
   const audioSrc = {
-    clip1: './sounds/simonSound1.mp3',
-    clip2: './sounds/simonSound2.mp3',
-    clip3: './sounds/simonSound3.mp3',
-    clip4: './sounds/simonSound4.mp3',
+    clip1: 'https://s3.amazonaws.com/freecodecamp/simonSound1.mp3',
+    clip2: 'https://s3.amazonaws.com/freecodecamp/simonSound1.mp3',
+    clip3: 'https://s3.amazonaws.com/freecodecamp/simonSound1.mp3',
+    clip4: 'https://s3.amazonaws.com/freecodecamp/simonSound1.mp3',
   }
   let audio = new Audio(audioSrc[audioId])
   audio.addEventListener('canplay', async () => {
