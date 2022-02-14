@@ -74,7 +74,7 @@ function gameTurn() {
 
 let AudioContext = window.AudioContext || window.webkitAudioContext
 
-async function soundEffect(audioId, elemId) {
+function soundEffect(audioId, elemId) {
   const audioSrc = {
     clip1: 'https://s3.amazonaws.com/freecodecamp/simonSound1.mp3',
     clip2: 'https://s3.amazonaws.com/freecodecamp/simonSound2.mp3',
@@ -82,7 +82,9 @@ async function soundEffect(audioId, elemId) {
     clip4: 'https://s3.amazonaws.com/freecodecamp/simonSound4.mp3',
   }
   let audio = new Audio(audioSrc[audioId])
-  await audio.play()
+  audio.addEventListener('canplaythrough', async function () {
+    await audio.play()
+  })
   elem = document.getElementById(elemId)
   elem.classList.add('active')
   audioEnd = true
